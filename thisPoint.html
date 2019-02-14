@@ -11,7 +11,7 @@
 
 let first = 'windowFirst';
 
-// console.log(this,this.first);
+console.log(this,this.first);
 
 let thisObj= {
 	first: 'firstThis',
@@ -28,7 +28,7 @@ let thisObj= {
 	}
 }
 
-// thisObj.second();
+thisObj.second();
 
 // 内部调用改变 this 指向
 
@@ -36,11 +36,11 @@ function threeObj() {
 	console.log(this, this.first);
 }
 
-// threeObj();
+threeObj();
 
-// thisObj.three = threeObj;
+thisObj.three = threeObj;
 
-// thisObj.three();
+thisObj.three();
 
 thisObj.second.bind(this)();
 
@@ -54,9 +54,9 @@ var obj = {
 
 var fn = obj.box;
 
-// fn();
+fn();
 
-// thisObj.colsurePoint();
+thisObj.colsurePoint();
 
 </script>
 </body>

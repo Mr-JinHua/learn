@@ -5,20 +5,19 @@
 </head>
 <body>
 <script type="text/javascript">
-console.log(Array.prototype);
-// Array.prototype.addnew = function(newStr) {
-// 	// this = this + newStr;
-// 	this.push(newStr);
-// 	return this;
-// };
+Array.prototype.addnew = function(newStr) {
+	// this = this + newStr;
+	this.push(newStr);
+	return this;
+};
 
-// console.log(['jin', 'hua'].addnew('ahafhahah'));
+console.log(['jin', 'hua'].addnew('ahafhahah'));
 
-// String.prototype.addnew = function(newStr) {
-// 	this = this + newStr;
-// 	return this;
-// };
-// console.log('jinhua'.addnew('ahafhahah'));
+String.prototype.addnew = function(newStr) {
+	this = this + newStr;
+	return this;
+};
+console.log('jinhua'.addnew('ahafhahah'));
 
 function prtTest() {
 	this.prtStr = 'jin hua';
@@ -40,23 +39,22 @@ console.log(jinAdd.__proto__,'jinAdd 隐式原型');
 jinAdd.prtCall();
 
 
-// var str = "   ac c   ";
-// //使用String prototype 给用添加自定义方法。
-// String.prototype.trim = function(){
-// 	console.log(this);
-//   var start = 0;
-//   var end  = code.length-1;
-//   while(start<=end && this.charAt(start) == ' '){
-// 	start++;
-//   }
-//   while(start<=end && this.charAt(end) == ' '){
-// 	end--;
-//   }
-//   //使用字符截取指定字符
-//   return this.substring(start,end+1);
-//   };
-//   //使用原型直接调用
-//   console.log("--"+str.trim()+"--")
+var str = "   ac c   ";
+//使用String prototype 给用添加自定义方法。
+String.prototype.trim = function(){
+  var start = 0;
+  var end  = code.length-1;
+  while(start<=end && this.charAt(start) == ' '){
+	start++;
+  }
+  while(start<=end && this.charAt(end) == ' '){
+	end--;
+  }
+  //使用字符截取指定字符
+  return this.substring(start,end+1);
+};
+//使用原型直接调用
+console.log("--"+str.trim()+"--")
 
 </script>
 </body>
