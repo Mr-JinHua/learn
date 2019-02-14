@@ -8,62 +8,62 @@
 /***********************
  * ES6 中 Promise 的使用
  ***********************/
-// let newpro = new Promise((resolve)=>{
-// 	resolve('Promise');
-// })
-// newpro.then((res)=>{
-// 	console.log(res);
-// })
+let newpro = new Promise((resolve)=>{
+	resolve('Promise');
+})
+newpro.then((res)=>{
+	console.log(res);
+})
 /***********************
  * 构造函数实现 方式一
  ***********************/
-// function Mypromise(sencall){
-// 	let newa;
-// 	this.then=function(callback){
-// 		sencall((req)=>{
-// 			newa = req;
-// 			callback(newa);
-// 		})
-// 	}
-// }
-// let jin = new Mypromise((resolve)=>{
-// 	setTimeout(()=>{
-// 		resolve('My Promise')
-// 	},1000)
-// })
-// jin.then((res)=>{
-// 	console.log(res)
-// })
+function Mypromise(sencall){
+	let newa;
+	this.then=function(callback){
+		sencall((req)=>{
+			newa = req;
+			callback(newa);
+		})
+	}
+}
+let jin = new Mypromise((resolve)=>{
+	setTimeout(()=>{
+		resolve('My Promise')
+	},1000)
+})
+jin.then((res)=>{
+	console.log(res)
+})
 
 /***********************
  * 构造函数实现 方式二
  ***********************/
-// function Mypromise(sencall){
-// 	let newa;
-// 	let doList=[];
-// 	sencall(function(){
-// 		// 这个不能使用箭头函数，箭头函数中 没有 arguments
-// 		let arg = Array.prototype.slice.call(arguments)
-// 		setTimeout(()=>{
-// 			doList.forEach((item)=>{
-// 				item.apply(null, arg)
-// 			})
-// 		})
-// 	})
-// 	this.then=function(callback){
-// 		doList.push(callback)
-// 	}
-// }
+function Mypromise(sencall){
+	let newa;
+	let doList=[];
+	sencall(function(){
+		// 这个不能使用箭头函数，箭头函数中 没有 arguments
+		let arg = Array.prototype.slice.call(arguments)
+		setTimeout(()=>{
+			doList.forEach((item)=>{
+				item.apply(null, arg)
+			})
+		})
+	})
+	this.then=function(callback){
+		doList.push(callback)
+	}
+}
 
-// let jin = new Mypromise((resolve)=>{
-// 	setTimeout(()=>{
-// 		resolve('My Promise')
-// 	},1000)
-// })
+let jin = new Mypromise((resolve)=>{
+	setTimeout(()=>{
+		resolve('My Promise')
+	},1000)
+})
 
-// jin.then((res)=>{
-// 	console.log(res)
-// })
+jin.then((res)=>{
+	console.log(res)
+})
 /****************
  * ES6 class 实现
  ****************/
