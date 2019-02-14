@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>long arr</title>
+</head>
+<body>
+<script type="text/javascript">
+let newarr = [
+	{
+		id: 123,
+		name: 'test123',
+		children: [
+			{
+				id: 1231,
+				name: 'test1231'
+			},
+			{
+				id: 1232,
+				name: 'test1232'
+			},
+			{
+				id: 1233,
+				name: 'test1233'
+			}
+		]
+	},
+	{
+		id: 124,
+		name: 'test124',
+		children: [
+			{
+				id: 1241,
+				name: 'test1241'
+			},
+			{
+				id: 1242,
+				name: 'test1242',
+				children: [
+					{
+						id: 12421,
+						name: 'test12421'
+					},
+					{
+						id: 12422,
+						name: 'test12422'
+					}
+				]
+			},
+			{
+				id: 1243,
+				name: 'test1243'
+			}
+		]
+	}
+]
+function jinArr(datas) {
+	let res = []
+	for (let item in datas) {
+		if(datas[item].length) res.push(datas[item])
+		if(!datas[item].length) {
+			let newdata = jinArr(datas[item].children)
+			res.push(newdata)
+		}
+	}
+	return res
+}
+
+console.log(jinArr(newarr))
+
+// function newArr(datas) {
+// 	let res = []
+// 	for (let item in datas) {
+// 		if(!datas[item].children) continue;
+// 		let newres = newArr(item);
+// 		res.push(newres);
+// 	}
+// 	return res;
+// }
+
+// let jinarr = newArr(newarr);
+
+// console.log(jinarr);
+// function loop(datas) {
+// 	datas.forEach((item) => {
+// 		if (item.children || item.children.length > 0) {
+// 			console.log(item.id)
+// 			loop(item.children)
+// 		} else {
+// 			console.log(item.id)
+// 		}
+// 	})
+// }
+// function arrFilter(datas) {
+// 	datas.map((item) => {
+// 		if (item.children) {
+// 			// console.log(item.id)
+// 			arrFilter(item.children)
+// 		} else {
+// 			return item;
+// 		}
+// 	})
+// }
+// let filterarr = arrFilter(newarr)
+// console.log(filterarr)
+
+// function findLastChildrens(arr) {
+//     var result = [];
+//     for(var i in arr) {
+//         var obj = arr[i];
+//         if(!obj.children) continue;
+//         var findResult = findLastChildrens(obj.children);
+//         if(findResult.length === 0) {
+//         	//当前children其下再没有children出现，说明当前children是最后一级
+//             result.push(obj.children);
+//         } else {
+//         	//不是最后一级children的话
+//             result = result.concat(findResult);
+//         }
+//     }
+//     return result;
+// }
+// loop(filterarr)
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>链式调用实现</title>
+</head>
+<body>
+<script type="text/javascript">
+/*
+ *_b 方法形成对 count 的闭包，这样就可以实现累计加和；
+ *_b 方法每次执行都会，返回自身，这样就形成了链式；
+ *最后，当做 console 操作时会自动调用 valueOf 方法；
+ */
+function add(num) {
+	var count = num;
+	var _b = function(num0){
+		count += num0;
+		return _b;
+	}
+	_b.valueOf = function(){
+		return count;
+	}
+	return _b;
+}
+var jin = add(1)(2)(3);
+console.log(jin);  // f 6
+</script>
+</body>
+</html>

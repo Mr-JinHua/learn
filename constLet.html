@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>const let</title>
+</head>
+<body>
+<script type="text/javascript">
+/*****************************************
+ *1.let不存在var的变量提升
+ *如果var声明的变量在之前被使用，是不会报错的
+ *当然那时候的值是undefined
+ *****************************************/
+
+// var 的情况
+// console.log(foo); // 输出undefined
+// var foo = 2;
+
+// let 的情况
+// console.log(bar); // 报错ReferenceError
+// let bar = 2;
+
+/*****************************************
+ *2.暂时性死区
+ *只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域
+ *不再受外部的影响
+ *****************************************/
+// var tmp = 123;
+// if (true) {
+//   tmp = 'abc'; // 报错 Uncaught ReferenceError: tmp is not defined
+//   let tmp;
+// }
+
+
+/*****************************************
+ *3.不允许重复声明
+ *不允许重复声明let不允许在相同作用域内，重复声明同一个变量。
+ *****************************************/
+
+// var a = 10;
+// var a = 1; //不会报错
+
+// let a = 10;
+// var a = 1; // 报错
+
+// let a = 10;
+// let a = 1; // 报错
+
+
+/*****************************************
+ *const声明的是一个常量
+ *对于引用类型，const指向的是一个内存地址，所以当改变内存地址时会报错。
+ *但是可以改变，内存地址里面的值。
+ *****************************************/
+
+/*****************************************
+ * const 命名的变量，无法去整体改变(整体改变就是改变变量的内存地址)
+ *不然会报错。
+ *****************************************/
+// const jinstr = "jin const";
+// jinstr = "jin change";//报错 Uncaught TypeError: Assignment to constant variable.(常变量赋值)
+
+// const jinObj = {};
+// jinObj={jin:'change test'};//报错 Uncaught TypeError: Assignment to constant variable.(常变量赋值)
+/*****************************************
+ * const 命名的变量，是引用类型可以内部改变。（这样不会改变内存地址）
+ *****************************************/
+const jinb = {
+	jin:'hua',
+	hua:'haha'
+};
+jinb.jin = 'jin change';
+console.log(jinb.jin); // 输出： jin change
+jinb.addKey = 'jin add addKey';
+console.log(jinb.addKey); // 输出： jin add addKey
+const jinarr=['jin'];
+jinarr.push('hua');
+console.log(jinarr); //输出 ["jin", "hua"]
+</script>
+</body>
+</html>

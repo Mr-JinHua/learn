@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>this 的指向问题</title>
+</head>
+<body>
+<script type="text/javascript">
+// 最外层的this
+
+// 对象内部的 this 指向
+
+let first = 'windowFirst';
+
+// console.log(this,this.first);
+
+let thisObj= {
+	first: 'firstThis',
+	second: function secondThis() {
+		console.log(this, this.first, 'thisObj');
+	},
+	colsure:function() {
+		(function () {
+			console.log(this, this.first);
+		})();
+	},
+	colsurePoint:() => {
+		console.log(this, 'colsurePoint');
+	}
+}
+
+// thisObj.second();
+
+// 内部调用改变 this 指向
+
+function threeObj() {
+	console.log(this, this.first);
+}
+
+// threeObj();
+
+// thisObj.three = threeObj;
+
+// thisObj.three();
+
+thisObj.second.bind(this)();
+
+var obj = {
+	name:'老王',
+	age:'99',
+	box:function(){
+		console.log(this);
+	}
+}
+
+var fn = obj.box;
+
+// fn();
+
+// thisObj.colsurePoint();
+
+</script>
+</body>
+</html>

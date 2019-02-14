@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+</head>
+<style type="text/css">
+.jinHua {
+	width: 150px;
+	height: 100px;
+	opacity: 0;
+}
+.jinStyle {
+	border: 1px solid red;
+	display: inline-block;
+}
+.jinStyle div {
+	list-style: none;
+	text-decoration: none;
+}
+#upLoadImg img {
+	width: 100%;
+}
+</style>
+<body>
+<a class="jinStyle" href="javascript:;" id="result">
+	<input type="file" value="图片" class="jinHua" id="upLoadImg"/>
+	<div>图片</div>
+</a>
+<script type="text/javascript">
+window.onload = function() {
+	let upLoadImg = document.getElementById('upLoadImg');
+	upLoadImg.onchange = function() {
+		let file = this.files[0];
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function() {
+			let result = document.getElementById('result');
+			result.innerHTML='<img src="' + this.result +'" alt=""/>';
+			console.log(this.result);
+		}
+	}
+	// upLoadImg.onclick = function() {
+	// 	console.log(this);
+	// 	let file = upLoadImg.files[0];
+	// 	var reader = new FileReader();
+	//     //将文件以Data URL形式读入页面
+	//     reader.readAsDataURL(file);
+	//     reader.onload=function(e) {
+	//         var result=document.getElementById("result");
+	//         显示文件
+	//         result.innerHTML='<img src="' + this.result +'" alt="" />';
+	//     }
+	// }
+}
+</script>
+</body>
+</html>

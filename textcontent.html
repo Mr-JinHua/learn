@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>textcontent</title>
+</head>
+<body>
+<div id="jincontent"><span>jin hua test</span><span>jin</span></div>
+<script type="text/javascript">
+let jin = document.getElementById('jincontent')
+
+console.log(jin.textContent,jin.childNodes,jin.childNodes[1].textContent)
+
+for(let i in jin.childNodes) {
+	console.log(jin.childNodes[i], jin.childNodes[i].textContent)
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>constructor</title>
+</head>
+<body>
+<script type="text/javascript">
+function constructor(name) {
+	function dealStr(str) {
+		return `${str} 戴着帽子`;
+	};
+	this.name = name;
+	this.sit=function () {
+		let deal = dealStr(this.name);
+		console.log(`${deal},坐在地板上。`);
+	};
+
+}
+
+let xue = new constructor('薛豪');
+xue.sit();
+</script>
+</body>
+</html>

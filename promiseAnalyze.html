@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+</head>
+<body>
+<script type="text/javascript">
+/*****************************************
+ * 简单 callback 回调
+ *****************************************/
+// function callsumfn(x,y,b,c,callback){
+// 	setTimeout(()=>{
+// 		let sum = x+y+b+c;
+// 		callback(sum);
+// 	},1000);
+// }
+// callsumfn(1,3,5,7,(res)=>{
+// 	console.log(res);
+// })
+
+/*****************************************
+ * 当两个异步函数 分别返回两个值之后，再执行加和
+ *****************************************/
+// function sumadd(addX,addY,addsum){
+// 	let sumx,sumy;
+// 	addX((x)=>{
+// 		sumx=x;
+// 		if(sumy){
+// 			addsum(sumx+sumy);
+// 		}
+// 	})
+// 	addY((y)=>{
+// 		sumy=y;
+// 		if(sumx){
+// 			addsum(sumx+sumy);
+// 		}
+// 	})
+// }
+// function sumfnx(resolve){
+// 	setTimeout(()=>{
+// 		resolve(3)// 模拟 ajax 请求，2s 后值返回
+// 	},2000)
+// }
+// function sumfny(resolve){
+// 	setTimeout(()=>{
+// 		resolve(4);// 模拟 ajax 请求，5s 后值返回
+// 	},5000)
+// }
+// sumadd(sumfnx,sumfny,(res)=>{
+// 	console.log(res) //当 sumfny 和 sumfnx 两个函数中的值都返回时 输出
+// })
+
+/*****************************************
+ * Promise 方式回调
+ *****************************************/
+// let protest = new Promise((resolve)=>{
+// 	setTimeout(()=>{
+// 		resolve('jin hua jinPromise');
+// 	},1000)
+// })
+
+// protest.then((res)=>{
+// 	console.log(res);
+// })
+
+/*****************************************
+ * Promise 的实现原理(简化版)
+ *****************************************/
+// function jinPromise(firstfn){
+// 	let jin='hua',jinhua;
+// 	firstfn((add)=>{
+// 		jinhua = add+jin;
+// 	})
+// 	this.then=function(){
+// 		console.log(jin);
+// 		console.log(jinhua);
+// 	}
+// }
+// let hua = new jinPromise((resolve)=>{
+// 	resolve('jin hua jinPromise');
+// });
+// hua.then((res)=>{
+// 	console.log(res);
+// });
+
+/*****************************************
+ * Promise 的实现原理(简化版)
+ *****************************************/
+// function jinPromise(firstfn,then){
+// 	let jin='hua',jinhua;
+// 	firstfn((add)=>{
+// 		jinhua = add;
+// 		then(jinhua);
+// 	})
+// 	this.and = ()=>{
+// 		console.log(jinhua);
+// 		debugger;
+// 	}
+// };
+// function addPro(resolve){
+// 	setTimeout(()=>{
+// 		resolve('jin hua jinPromise');
+// 	},1000)
+// };
+// let hua = new jinPromise(addPro,(res)=>{
+// 	console.log(res);
+// });
+// setTimeout(()=>{
+// 	hua.and();
+// },2000)
+/*****************************************
+ * Promise.all 等所有值都返回，执行回调
+ *****************************************/
+let newPromise1 = new Promise((resolve)=>{
+	setTimeout(()=>{
+		resolve(8)
+	},1000)
+})
+let newPromise2 = new Promise((resolve)=>{
+	setTimeout(()=>{
+		resolve(5)
+	},2000)
+})
+Promise.all([newPromise1,newPromise2]).then((res)=>{
+	let addsum=0;
+	console.log(res);
+	res.forEach((item)=>{
+		console.log(item);
+		addsum += item;
+	})
+	console.log(addsum);
+})
+/*****************************************
+ * Promise.race 那个值先返回先执行哪个
+ *****************************************/
+</script>
+</body>
+</html>
