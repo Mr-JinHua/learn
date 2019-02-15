@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>深度复制</title>
+</head>
+<body>
+<script type="text/javascript">
+/*****************
+ *判断数据类型函数
+ ****************/
+function isClass(itemClass){
+	return Object.prototype.toString.call(itemClass).slice(8,-1)
+}
+
+/*************
+ *深度复制函数
+ ************/
+function deepClone(obj){
+	if(isClass(obj)!='Object' && isClass(obj)!='Array'){
+		return obj;
+	}
+	var newobj=isClass(obj)==='Object'?{}:(isClass(obj)==='Array'?[]:obj);
+	for(var ind in obj){
+		if (isClass(obj[ind])==='Object' || isClass(obj[ind])==='Array') {
+			newobj[ind] = deepClone(obj[ind])
+		}else{
+			newobj[ind] = obj[ind]
+		}
+	}
+	return newobj;
+}
+/*************
+ *对函数进行测试
+ *1.包含函数、数组、会不会有影响
+ *2.
+ *对函数进行测试
+ ************/
+let jinobj = {
+	jin:'hua',
+	test:'jin',
+	testarr:[1, 2, 3, 4, {newtest:'newtest jin'}],
+	jinfun:function(){
+		console.log('jin fun')
+	}
+}
+let newjin = deepClone(jinobj)
+newjin.newadd = 'new add'
+
+jinobj.jinfun()
+newjin.jinfun()
+newjin.jinfun = function(){
+	console.log('jin fun new add')
+}
+jinobj.jinfun()
+newjin.jinfun()
+newjin.testarr.push(1000)
+console.log(newjin, jinobj)
+</script>
+</body>
+</html>
