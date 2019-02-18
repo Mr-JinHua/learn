@@ -18,7 +18,7 @@
 class Vue{
     constructor(options = {}){
         this.$el = document.querySelector(options.el);
-        let data = this.data = options.data; 
+        let data = this.data = options.data;
         // 代理data，使其能直接this.xxx的方式访问data，正常的话需要this.data.xxx
         Object.keys(data).forEach((key)=> {
             this.proxyData(key);
@@ -28,7 +28,7 @@ class Vue{
         this.observer(data); // 初始化劫持监听所有数据
         this.compile(this.$el); // 解析dom
     }
-     proxyData(key){
+    proxyData(key){
         let that = this;
         Object.defineProperty(that, key, {
             configurable: false,
