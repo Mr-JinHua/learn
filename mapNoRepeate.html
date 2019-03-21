@@ -10,8 +10,15 @@
  */
 let jinArr = [1,3,5,2,7,2,1,5,3];
 console.log(jinArr);
-let huaArr = Array.from(new Set(jinArr));
+// let huaArr = Array.from(new Set(jinArr));
+console.log(new Set(jinArr))
+let huaArr = Array.prototype.slice.call(new Set(jinArr));
+
 console.log(huaArr);
+let jinstr = 'jdkfjldkfjf'
+let huastr = Array.prototype.slice.call(jinstr);
+
+console.log(huastr)
 </script>
 </body>
 </html>

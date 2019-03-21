@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数组变扁平化去重</title>
+</head>
+<body>
+<script type="text/javascript">
+/******************************************************************************
+ *编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组
+ ******************************************************************************/
+
+var arrJin = [ [1, 2, 2], [5, 5, 3, 4 ], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+function arrayFloat(arr, nowArr) {
+	let newArr = nowArr || [];
+	function dataType(data){
+		return Object.prototype.toString.call(data).slice(8,-1)
+	}
+	if (dataType(arr) === 'Array'){
+		arr.forEach((item)=>{
+			if(dataType(item) === 'Array'){
+				arrayFloat(item, newArr)
+			} else if (dataType(arr) != 'Object'){
+				if (!newArr.includes(item)) newArr.push(item);
+			}
+		})
+	}
+	return newArr;
+};
+
+function arrayFloat1(arr){
+	let nowArr = [];
+	function dataType(data){
+		return Object.prototype.toString.call(data).slice(8,-1)
+	}
+	if (dataType(arr) != 'Array') return;
+	arr.toString().split(',').forEach((item)=>{
+		let itemNum = Number(item);
+		if(!nowArr.includes(itemNum)) nowArr.push(itemNum)
+	})
+	return nowArr;
+}
+console.log(arrayFloat(arrJin));
+console.log(arrayFloat1(arrJin));
+</script>
+</body>
+</html>
