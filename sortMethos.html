@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>排序方法</title>
+</head>
+<body>
+<script type="text/javascript">
+function useSort(arr) {
+	var newarr = [];
+	arr.forEach((item) => {
+		if(newarr.length == 0) {
+			newarr.push(item);
+		} else {
+			for(let index=0;index<newarr.length;index++){
+				if(newarr.length > 1){
+					if(index > 0){
+						if(newarr[index-1]<item && item<newarr[index]) {
+							newarr.splice(index,0,item);
+							break;
+						}
+						if(index == (newarr.length-1) && item > newarr[index]) {
+							newarr.push(item);
+							break;
+						}
+					}else{
+						if(item < newarr[index]) {
+							newarr.unshift(item);
+							break;
+						}
+					}
+				}else{
+					if(item < newarr[index]) {
+						newarr.unshift(item);
+						break;
+					}
+				}
+			}
+		}
+		
+	})
+	return newarr;
+}
+
+console.log(useSort([9,5,2,6,3]));
+</script>
+</html>

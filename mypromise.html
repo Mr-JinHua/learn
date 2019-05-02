@@ -17,23 +17,23 @@ newpro.then((res)=>{
 /***********************
  * 构造函数实现 方式一
  ***********************/
-function Mypromise(sencall){
-	let newa;
-	this.then=function(callback){
-		sencall((req)=>{
-			newa = req;
-			callback(newa);
-		})
-	}
-}
-let jin = new Mypromise((resolve)=>{
-	setTimeout(()=>{
-		resolve('My Promise')
-	},1000)
-})
-jin.then((res)=>{
-	console.log(res)
-})
+// function Mypromise(sencall){
+// 	let newa;
+// 	this.then=function(callback){
+// 		sencall((req)=>{
+// 			newa = req;
+// 			callback(newa);
+// 		})
+// 	}
+// }
+// let jin = new Mypromise((resolve)=>{
+// 	setTimeout(()=>{
+// 		resolve('My Promise')
+// 	},1000)
+// })
+// jin.then((res)=>{
+// 	console.log(res)
+// })
 
 /***********************
  * 构造函数实现 方式二
@@ -68,32 +68,32 @@ jin.then((res)=>{
  * ES6 class 实现
  ****************/
 
-class myPromise {
-	constructor(callback){
-		this.doList=[]
-		callback(this.resolve.bind(this))
-	}
-	resolve(){
-		let args=Array.prototype.slice.call(arguments)
-		setTimeout(()=>{
-			this.doList.forEach((item)=>{
-				item.apply(null,args)
-			})
-		})
-	}
-	then(call){
-		this.doList.push(call)
-	}
-}
+// class myPromise {
+// 	constructor(callback){
+// 		this.doList=[]
+// 		callback(this.resolve.bind(this))
+// 	}
+// 	resolve(){
+// 		let args=Array.prototype.slice.call(arguments)
+// 		setTimeout(()=>{
+// 			this.doList.forEach((item)=>{
+// 				item.apply(null,args)
+// 			})
+// 		})
+// 	}
+// 	then(call){
+// 		this.doList.push(call)
+// 	}
+// }
 
-let jinPro = new myPromise((resolve)=>{
-	setTimeout(()=>{
-		resolve('jinPro')
-	},1000)
-})
-jinPro.then((res)=>{
-	console.log(res)
-})
+// let jinPro = new myPromise((resolve)=>{
+// 	setTimeout(()=>{
+// 		resolve('jinPro')
+// 	},1000)
+// })
+// jinPro.then((res)=>{
+// 	console.log(res)
+// })
 </script>
 </body>
 </html>
